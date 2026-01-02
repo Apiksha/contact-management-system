@@ -30,8 +30,9 @@ function createApp() {
 		const indexHtml = path.join(clientDist, 'index.html');
 		if (fs.existsSync(indexHtml)) {
 			app.use(express.static(clientDist));
-			app.get('/*', (req, res, next) => {
-				if (req.path.startsWith('/api')) return next();
+			// Express 5 + path-to-regexp can be strict about wildcard strings like '*', '/*'.
+			// Use a regex route for the SPA fallback and explicitly exclude /api.
+			app.get(/^(?!\/api).*/, (req, res) => {
 				res.sendFile(indexHtml);
 			});
 		}

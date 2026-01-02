@@ -3,11 +3,14 @@ services:
     name: contact-management
     env: node
     plan: free
-    buildCommand: npm install && npm run build
+    buildCommand: npm install --include=dev && npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
+      # Ensure devDependencies are installed during build (client uses vite).
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"
       - key: MONGO_URI
         sync: false
       # Optional; kept for clarity. In production the server will auto-serve the client if built.

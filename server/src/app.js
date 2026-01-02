@@ -30,7 +30,7 @@ function createApp() {
 		const indexHtml = path.join(clientDist, 'index.html');
 		if (fs.existsSync(indexHtml)) {
 			app.use(express.static(clientDist));
-			app.get('*', (req, res, next) => {
+			app.get('/*', (req, res, next) => {
 				if (req.path.startsWith('/api')) return next();
 				res.sendFile(indexHtml);
 			});

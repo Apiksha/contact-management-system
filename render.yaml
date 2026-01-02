@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: contact-management
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      # Optional; kept for clarity. In production the server will auto-serve the client if built.
+      - key: SERVE_CLIENT
+        value: "true"

@@ -1,0 +1,66 @@
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color: #e5e7eb;
+  background: #0b1220;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: transparent;
+  position: relative;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+/* Subtle animated background (professional + accessible) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(900px 520px at 18% 12%, rgba(37, 99, 235, 0.22), transparent 62%),
+    radial-gradient(780px 480px at 82% 18%, rgba(14, 165, 233, 0.18), transparent 60%),
+    radial-gradient(900px 520px at 70% 85%, rgba(99, 102, 241, 0.16), transparent 62%),
+    linear-gradient(180deg, #0b1220 0%, #070b12 100%);
+
+  transform: translate3d(0, 0, 0);
+  animation: ambientShift 16s ease-in-out infinite alternate;
+}
+
+@keyframes ambientShift {
+  0% {
+    filter: hue-rotate(0deg) saturate(1);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    filter: hue-rotate(-10deg) saturate(1.08);
+    transform: translate3d(0, -18px, 0) scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
